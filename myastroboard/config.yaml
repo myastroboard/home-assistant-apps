@@ -9,14 +9,11 @@ arch:
   - amd64
   - aarch64
 stage: experimental
-startup: application
-boot: auto
 webui: "http://[HOST]:[PORT:5000]"
 ports:
   5000/tcp: 5000
 ports_description:
   5000/tcp: Web interface
-watchdog: "http://[HOST]:[PORT:5000]/health"
 environment:
   DATA_DIR: /data
 # Regenerable caches and logs: keep Home Assistant backups small.
