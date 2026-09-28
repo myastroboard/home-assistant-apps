@@ -1,7 +1,8 @@
 name: Update apps
 
 # Bumps each app's version to its latest upstream release once the Docker Hub
-# image is published, and commits the result to main. See scripts/update_apps.py.
+# image is published, and opens (or refreshes) a pull request against main.
+# See scripts/update_apps.py.
 
 on:
   schedule:
@@ -17,6 +18,7 @@ concurrency:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update:
@@ -31,13 +33,24 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/update_apps.py
 
-      - name: Commit and push
+      - name: Open or update pull request
         if: steps.update.outputs.changed == 'true'
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: ${{ steps.update.outputs.message }}
+          BRANCH: bot/update-apps
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$BRANCH"
           git add -- */config.yaml */CHANGELOG.md
           git commit -m "$MESSAGE"
-          git push
+          # The branch is always rebuilt from main, so overwriting it is safe.
+          git push --force origin "$BRANCH"
+          pr=$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number')
+          if [ -n "$pr" ]; then
+            gh pr edit "$pr" --title "$MESSAGE"
+          else
+            gh pr create --base main --head "$BRANCH" --title "$MESSAGE" \
+              --body "Automated version bump opened by the Update apps workflow."
+          fi
