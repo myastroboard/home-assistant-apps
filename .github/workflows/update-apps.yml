@@ -26,6 +26,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          # A PAT (not GITHUB_TOKEN) so the bot's PR can be opened and triggers the checks.
+          token: ${{ secrets.GH_PAT }}
 
       - name: Check upstream releases
         id: update
@@ -36,7 +39,7 @@ jobs:
       - name: Open or update pull request
         if: steps.update.outputs.changed == 'true'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
           MESSAGE: ${{ steps.update.outputs.message }}
           BRANCH: bot/update-apps
         run: |
