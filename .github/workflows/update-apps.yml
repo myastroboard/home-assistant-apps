@@ -1,0 +1,43 @@
+name: Update apps
+
+# Bumps each app's version to its latest upstream release once the Docker Hub
+# image is published, and commits the result to main. See scripts/update_apps.py.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+  # Lets an upstream release workflow trigger a check right away (optional).
+  repository_dispatch:
+    types: [upstream-release]
+
+concurrency:
+  group: update-apps
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Check upstream releases
+        id: update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/update_apps.py
+
+      - name: Commit and push
+        if: steps.update.outputs.changed == 'true'
+        env:
+          MESSAGE: ${{ steps.update.outputs.message }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- */config.yaml */CHANGELOG.md
+          git commit -m "$MESSAGE"
+          git push

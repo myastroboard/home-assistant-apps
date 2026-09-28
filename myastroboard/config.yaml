@@ -1,0 +1,26 @@
+name: MyAstroBoard
+# Managed by .github/workflows/update-apps.yml - must match a published Docker Hub tag.
+version: "1.6.3"
+slug: myastroboard
+description: Astronomy dashboard for observation planning and astrophotography
+url: https://github.com/myastroboard/myastroboard
+image: myastroboard/myastroboard
+arch:
+  - amd64
+  - aarch64
+stage: experimental
+startup: application
+boot: auto
+webui: "http://[HOST]:[PORT:5000]"
+ports:
+  5000/tcp: 5000
+ports_description:
+  5000/tcp: Web interface
+watchdog: "http://[HOST]:[PORT:5000]/health"
+environment:
+  DATA_DIR: /data
+# Regenerable caches and logs: keep Home Assistant backups small.
+backup_exclude:
+  - "cache/**"
+  - "*.log"
+  - "*.log.*"
