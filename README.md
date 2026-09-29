@@ -7,7 +7,7 @@ knowledge needed.
 
 | App | What it does |
 |-----|--------------|
-| [MyAstroBoard](myastroboard/DOCUMENTATION.md) | Astronomy dashboard: observation planning, sky conditions, astrophotography |
+| [MyAstroBoard](myastroboard/DOCS.md) | Astronomy dashboard: observation planning, sky conditions, astrophotography |
 
 ## Installation
 
@@ -31,7 +31,7 @@ is on Docker Hub, it bumps `version:` in the app's `config.yaml` and prepends th
 release's changelog to the app's `CHANGELOG.md`. Home Assistant then offers the
 update to users. It can also be run by hand from the Actions tab.
 
-To add an app: create a folder with `config.yaml`, `DOCUMENTATION.md`,
+To add an app: create a folder with `config.yaml`, `README.md`, `DOCS.md`,
 `CHANGELOG.md`, `icon.png` and `logo.png`, with `url:` pointing at the upstream
 GitHub repository and `image:` at its Docker Hub image. The update workflow picks
 it up automatically.

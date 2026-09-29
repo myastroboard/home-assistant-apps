@@ -7,10 +7,13 @@ Full documentation: <https://github.com/myastroboard/myastroboard/tree/main/docs
 
 ## First start
 
-1. Start the app and click **Open web UI** (port 5000 on your Home Assistant host).
-2. Sign in with `admin` / `admin` and **change the password immediately** - a
+1. Click **Start**, then give it a moment: Home Assistant can take several
+   seconds to show the app as started. Don't click **Start** again - that
+   restarts it.
+2. Click **Open web UI** (port 5000 on your Home Assistant host).
+3. Sign in with `admin` / `admin` and **change the password immediately** - a
    banner reminds you until you do.
-3. The setup wizard asks for your observing location; everything else is set
+4. The setup wizard asks for your observing location; everything else is set
    from **Parameters** in the web UI.
 
 The first SkyTonight calculation can take several minutes on a Raspberry Pi.
