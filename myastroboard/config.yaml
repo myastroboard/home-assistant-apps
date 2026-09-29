@@ -16,6 +16,9 @@ ports_description:
   5000/tcp: Web interface
 environment:
   DATA_DIR: /data
+# Seconds Home Assistant waits for a clean stop before killing the app (default 10):
+# background jobs (cache update, MQTT "offline" message) get a few seconds each.
+timeout: 20
 # Regenerable caches and logs: keep Home Assistant backups small.
 backup_exclude:
   - "cache/**"

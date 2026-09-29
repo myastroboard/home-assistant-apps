@@ -23,6 +23,14 @@ excluded and rebuilt automatically).
 
 To use another host port, change it in the app's **Network** section.
 
+## Logs
+
+The app's **Log** tab shows the console output (warnings and errors by default).
+To troubleshoot, go to **Parameters -> Log export** in the web UI: set the log
+file level (and, if you want more detail in the **Log** tab, the console level)
+to `DEBUG`, reproduce the issue, then export the logs. Changes apply without
+restarting the app. (Available from MyAstroBoard 1.6.6.)
+
 ## Home Assistant integration
 
 MyAstroBoard can publish its data to Home Assistant over MQTT. It is optional:
