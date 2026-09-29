@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.6.5
+
+### Fixes
+
+- Docker: the image now declares its own `HEALTHCHECK` (on `/health`), no longer only in
+  `docker-compose.yml`.
+- Docker (amd64): the app no longer crashes at startup on VMs with a generic CPU model (e.g.
+  Proxmox `kvm64`, the Home Assistant OS VM default); NumPy is rebuilt for older CPUs.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.6.5>
+
 ## 1.6.4
 
 ### Features
