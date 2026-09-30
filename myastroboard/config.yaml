@@ -9,13 +9,21 @@ arch:
   - amd64
   - aarch64
 stage: experimental
-webui: "http://[HOST]:[PORT:5000]"
+# Sidebar panel. Needs a MyAstroBoard image with sub-path support (MYASTROBOARD_HA_INGRESS below).
+ingress: true
+ingress_port: 5000
+panel_icon: mdi:telescope
+panel_title: MyAstroBoard
+# Direct port kept on: installable app (PWA) and push notifications, Astrodex stream for the
+# Lovelace card / camera entity, MyAstroShine photo return - none of these work through ingress.
 ports:
   5000/tcp: 5000
 ports_description:
-  5000/tcp: Web interface
+  5000/tcp: Direct access (installable app, notifications, Astrodex stream)
 environment:
   DATA_DIR: /data
+  # Trusts X-Ingress-Path from the Supervisor (172.30.32.2) only; never set on plain Docker
+  MYASTROBOARD_HA_INGRESS: "1"
 # Seconds Home Assistant waits for a clean stop before killing the app (default 10):
 # background jobs (cache update, MQTT "offline" message) get a few seconds each.
 timeout: 20

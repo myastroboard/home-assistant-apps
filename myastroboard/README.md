@@ -10,7 +10,7 @@ Self-hosted astronomy dashboard for observation planning and astrophotography.
 - **Plan My Night** - session timeline, exportable to CSV/PDF
 - **Astrodex** - your personal catalogue of captured objects
 - **Equipment profiles** - telescopes, cameras, filters, with a FOV calculator
-- **Home Assistant integration** - optional MQTT publishing with auto-discovery
+- **Home Assistant integration** - sidebar panel, optional MQTT publishing with auto-discovery
 
 ![MyAstroBoard](https://raw.githubusercontent.com/myastroboard/myastroboard/main/docs/img/astrophoto_main.png)
 
