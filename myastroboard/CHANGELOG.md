@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.6.8
+
+### Fixes
+
+- Home Assistant sidebar panel (ingress): requests from the Supervisor were refused (404 on every page)
+  because gunicorn reports its IPv4 address in IPv6 form (`::ffff:172.30.32.2`).
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.6.8>
+
 ## 1.6.7
 
 ### Features
