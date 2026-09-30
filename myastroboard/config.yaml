@@ -1,6 +1,6 @@
 name: MyAstroBoard
 # Managed by .github/workflows/update-apps.yml - must match a published Docker Hub tag.
-version: "1.6.6"
+version: "1.6.7"
 slug: myastroboard
 description: Astronomy dashboard for observation planning and astrophotography
 url: https://github.com/myastroboard/myastroboard

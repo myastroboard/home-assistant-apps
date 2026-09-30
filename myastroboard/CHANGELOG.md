@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.6.7
+
+### Features
+
+- Sub-path support: MyAstroBoard runs under a path prefix (Home Assistant sidebar panel via ingress,
+  or `X-Forwarded-Prefix` behind a reverse proxy), with a new *External base URL* setting.
+
+### Fixes
+
+- Parameters: the log retention setting moved from *Privacy & search engines* to *Log export*, next to
+  the log levels.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.6.7>
+
 ## 1.6.6
 
 ### Features
