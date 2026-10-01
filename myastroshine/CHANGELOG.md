@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.1
+
+### Fixed
+
+- **Clean stop exit code.** Stopping the container now exits with code 0
+  instead of 143. uvicorn re-raised the SIGTERM after its graceful shutdown, so
+  Home Assistant reported the app as "did not handle SIGTERM" and showed an
+  error on the app card.
+
+Release notes: <https://github.com/myastroboard/myastroshine/releases/tag/v0.5.1>
+
 ## 0.5.0
 
 First release as a Home Assistant app: a single container (no Redis or worker),
