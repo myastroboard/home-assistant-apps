@@ -38,6 +38,12 @@ are stored in the app's data folder.
 Each Home Assistant user is counted on their own for the upload rate limit and
 the number of jobs running at once.
 
+**Large uploads behind a proxy.** A proxy in front of Home Assistant can cap
+the size of an upload: Cloudflare (a tunnel or a proxied domain) refuses
+anything over 100 MB on its Free and Pro plans. Photos usually fit; the ML
+engine packages (200-300 MB) do not. Install engines from your local address
+(e.g. `http://homeassistant.local:8123`) - it is needed only once.
+
 ## Using MyAstroShine from MyAstroBoard
 
 MyAstroBoard's Astrodex can open a photo in MyAstroShine and receive the result
