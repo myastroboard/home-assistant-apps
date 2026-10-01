@@ -1,0 +1,45 @@
+#include <tunables/global>
+
+# The Supervisor rewrites the profile name below to the installed slug
+# (e.g. ff6fddf1_myastroshine), so rules must use @{profile_name}, never a literal name.
+# Violations show as apparmor="DENIED" in the host audit log:
+#   ha host logs --identifier audit --lines 50000 | grep -i apparmor
+profile myastroshine flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # One root process (python -m app.serve), no user switch, no chown at start:
+  # only stopping an external engine (StarNet2 / DeepSNR) it started.
+  capability kill,
+
+  # uvicorn listener (IPv4 + IPv6) and outbound HTTP/DNS (Astrodex, release check)
+  network inet stream,
+  network inet6 stream,
+  network inet dgram,
+  network inet6 dgram,
+  network netlink raw,
+
+  # Engine subprocesses; stop from Supervisor
+  signal (send, receive) peer=@{profile_name},
+  signal (receive) peer=unconfined,
+
+  # File access: allowed broadly (it also covers running uploaded engines and the
+  # curl health check), sensitive areas denied below
+  file,
+
+  # Hardening
+  deny mount,
+  deny umount,
+  deny pivot_root,
+  deny ptrace,
+  deny capability sys_admin,
+  deny capability sys_module,
+  deny capability sys_rawio,
+  deny capability net_admin,
+  deny capability sys_ptrace,
+  # inet/inet6 only: a bare "deny network raw" would also cancel "network netlink raw" above
+  deny network inet raw,
+  deny network inet6 raw,
+  deny network packet,
+  deny /proc/sys/kernel/** w,
+  deny /sys/** w,
+}

@@ -1,0 +1,47 @@
+name: MyAstroShine
+# Managed by .github/workflows/update-apps.yml - must match a published Docker Hub tag.
+# 0.5.0 is the first release that runs as a single container with ingress support:
+# do not merge this app before that tag is on Docker Hub for both arches.
+version: "0.5.0"
+slug: myastroshine
+description: Astrophoto enhancement and stacking, in your browser
+url: https://github.com/myastroboard/myastroshine
+image: myastroboard/myastroshine
+arch:
+  - amd64
+  - aarch64
+stage: experimental
+# Sidebar panel. The image trusts the Supervisor's ingress headers by itself
+# (SUPERVISOR_TOKEN + the Supervisor's address), nothing to set here.
+ingress: true
+ingress_port: 8002
+panel_icon: mdi:image-filter-hdr
+panel_title: MyAstroShine
+# Direct port off by default: through the panel, Home Assistant's login is in front
+# of the app. Only needed to open MyAstroShine from MyAstroBoard (see DOCS.md).
+ports:
+  8002/tcp: null
+ports_description:
+  8002/tcp: Direct access (opening photos from MyAstroBoard's Astrodex)
+environment:
+  APP_ENV: production
+  DATA_DIR: /data
+# The app's own folder, /addon_configs/<slug>/ on the host: an empty "reset-admin"
+# file dropped there clears the admin password at the next start.
+map:
+  - type: addon_config
+    read_only: false
+# Seconds Home Assistant waits for a clean stop (default 10). The app stops in
+# about 5 s with a job running; leave headroom on a slow host.
+timeout: 20
+# The SQLite database must not be copied while it is written: stop the app during backups.
+backup: cold
+# Working copies that expire on their own (editing sessions, stacks), caches, logs,
+# and engine packages (200-300 MB, re-uploaded after a restore).
+backup_exclude:
+  - "images/**"
+  - "stacks/**"
+  - "cache/**"
+  - "engines/**"
+  - "*.log"
+  - "*.log.*"
