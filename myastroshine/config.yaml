@@ -15,6 +15,10 @@ stage: experimental
 # (SUPERVISOR_TOKEN + the Supervisor's address), nothing to set here.
 ingress: true
 ingress_port: 8002
+# Without it the Supervisor reads each request body whole into memory, capped at
+# 16 MiB ("Maximum request body size 16777216 exceeded" on a 40 MB photo). With
+# it, POST bodies are streamed to the app, which enforces its own upload limit.
+ingress_stream: true
 panel_icon: mdi:image-filter-hdr
 panel_title: MyAstroShine
 # Direct port off by default: through the panel, Home Assistant's login is in front
