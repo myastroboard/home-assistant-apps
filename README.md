@@ -1,13 +1,14 @@
 # MyAstroBoard apps for Home Assistant
 
-Run MyAstroBoard as a Home Assistant app (formerly add-on) - no Docker
-knowledge needed.
+Run MyAstroBoard and MyAstroShine as Home Assistant apps (formerly add-ons) - no
+Docker knowledge needed.
 
 [![Add repository to Home Assistant][repo-badge]][repo-link]
 
 | App | What it does |
 |-----|--------------|
 | [MyAstroBoard](myastroboard/DOCS.md) | Astronomy dashboard: observation planning, sky conditions, astrophotography |
+| [MyAstroShine](myastroshine/DOCS.md) | Astrophoto enhancement and stacking, in your browser |
 
 ## Installation
 
@@ -23,7 +24,7 @@ Requires Home Assistant OS or a Supervised installation, on a 64-bit system
 ## How this repository works
 
 Each app only wraps its image already published on Docker Hub
-(`myastroboard/myastroboard`); nothing is built here.
+(`myastroboard/myastroboard`, `myastroboard/myastroshine`); nothing is built here.
 
 The [update workflow](.github/workflows/update-apps.yml) checks the upstream
 GitHub releases every hour. When a newer release exists and its multi-arch image
