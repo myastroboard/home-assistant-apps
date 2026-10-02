@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.7.0
+
+### Features
+
+- Footer update notice opens a *What's new* window listing the changelog entries since the installed version,
+  with breaking changes gathered on top, instead of linking straight to GitHub.
+- Storage moves from JSON files to a SQLite database (`data/myastroboard.db`) with versioned schema
+  migrations; existing data is imported, verified and archived automatically on first start - see
+  [docs/DATABASE.md](https://github.com/myastroboard/myastroboard/blob/v1.7.0/docs/DATABASE.md).
+- `backend/db/manage.py` command line for recovery (reset a password, disable 2FA) without editing files.
+- Parameters -> Metrics gets a Database block: schema version, size, journal mode, integrity check.
+- Parameters -> Backup / Restore shows the 1.7 upgrade archive (`data/backups/`) and deletes it once no longer needed.
+
+### Breaking changes
+
+- One-way data migration: once 1.7 has started, going back to 1.6 means restoring
+  `data/backups/pre-1.7-*.zip`. Hand-editing `users.json`/`config.json` is replaced by the
+  `manage.py` command line and the Admin backup/restore.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.7.0>
+
 ## 1.6.8
 
 ### Fixes
