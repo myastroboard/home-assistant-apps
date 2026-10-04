@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.7.1
+
+### Features
+
+- Observatory: AllSky sensor card shows the Fans module (state, PWM duty %, temperature and threshold, up to two fans).
+
+### Fixes
+
+- AllSky connector supports AllSky v2026.10 as well as v2024.12 (auto-detected); the card explains the Export
+  module setup - see [docs/CONNECTORS.md](https://github.com/myastroboard/myastroboard/blob/v1.7.1/docs/CONNECTORS.md#allsky-versions).
+- AllSky sensor data no longer stays empty forever when the first read failed (e.g. Export file not written yet):
+  the cached reading now expires after 5 minutes, or 1 minute when empty.
+- Connector cards: *Configure* buttons line up across a row, and an open settings panel starts right
+  under its button instead of below a gap when a neighbouring card is taller.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.7.1>
+
 ## 1.7.0
 
 ### Features
