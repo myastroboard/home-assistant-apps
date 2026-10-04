@@ -50,10 +50,11 @@ jobs:
           git commit -m "$MESSAGE"
           # The branch is always rebuilt from main, so overwriting it is safe.
           git push --force origin "$BRANCH"
-          pr=$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number')
+          pr=$(gh api "repos/${GITHUB_REPOSITORY}/pulls?state=open&head=${GITHUB_REPOSITORY_OWNER}:${BRANCH}&base=main&per_page=1" --jq '.[0].number // empty')
           if [ -n "$pr" ]; then
-            gh pr edit "$pr" --title "$MESSAGE"
+            gh api "repos/${GITHUB_REPOSITORY}/pulls/${pr}" --method PATCH -f title="$MESSAGE"
           else
-            gh pr create --base main --head "$BRANCH" --title "$MESSAGE" \
-              --body "Automated version bump opened by the Update apps workflow."
+            gh api "repos/${GITHUB_REPOSITORY}/pulls" --method POST \
+              -f base=main -f head="$BRANCH" -f title="$MESSAGE" \
+              -f body="Automated version bump opened by the Update apps workflow."
           fi
