@@ -2,7 +2,7 @@ name: MyAstroShine
 # Managed by .github/workflows/update-apps.yml - must match a published Docker Hub tag.
 # 0.5.0 is the first release that runs as a single container with ingress support:
 # do not merge this app before that tag is on Docker Hub for both arches.
-version: "0.5.1"
+version: "0.6.0"
 slug: myastroshine
 description: Astrophoto enhancement and stacking, in your browser
 url: https://github.com/myastroboard/myastroshine
