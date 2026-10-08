@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.7.2
+
+### Features
+
+- Parameters: MQTT brokers are now shared connections, managed in Configuration and picked by the MQTT / Home Assistant
+  connector; an existing broker setup is migrated automatically - see [docs/HOME_ASSISTANT.md](https://github.com/myastroboard/myastroboard/blob/v1.7.2/docs/HOME_ASSISTANT.md#mqtt-connections).
+- Parameters: sub-tabs reordered (Locations, Configuration, Connectors, Logs, Users, Metrics, Backup / Restore); Log export
+  now sits under Logs.
+- Connectors: the "Display name" field only shows on connectors with an Observatory panel (AllSky), the only place it
+  is used.
+- Observatory: AllSky sensor data now arrives over MQTT from AllSky's Publish Data module (v2024.12 and v2026), on a shared
+  MQTT connection; v2026's shared environment sensor is shown first - see [docs/CONNECTORS.md](https://github.com/myastroboard/myastroboard/blob/v1.7.2/docs/CONNECTORS.md#sensor-data-module).
+
+### Fixes
+
+- Saving the Parameters -> Configuration settings no longer resets the connector settings (AllSky URL, MQTT broker).
+- Observatory: AllSky sensor card shows a dome temperature (Dew Heater ambient, else the fan's control temperature) with the fan threshold on the fan row; the camera sensor `TEMPERATURE_C` `0` placeholder is hidden - see [docs/CONNECTORS.md](https://github.com/myastroboard/myastroboard/blob/v1.7.2/docs/CONNECTORS.md).
+
+### Breaking changes
+
+- AllSky connector: sensor data no longer reads the Export module file (`export_json_path` is gone). Pick an MQTT
+  connection in the *Sensor data* module and set up AllSky's Publish Data module as the card shows.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.7.2>
+
 ## 1.7.1
 
 ### Features
