@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.7.3
+
+### Features
+
+- Maps: OpenStreetMap vector maps drawn in the browser, with light, dark and night vision red styles, loaded and
+  cached by the server instead of Esri tiles - see [docs/CACHE_SYSTEM.md](https://github.com/myastroboard/myastroboard/blob/v1.7.3/docs/CACHE_SYSTEM.md#map-tile-cache).
+
+### Fixes
+
+- Astrodex photo map: the mouse wheel scrolls the page again; it zooms the map only after a click on it.
+- *What's new* window: the release just published is listed again instead of "could not be loaded" (its changelog
+  entries are read from the release tag's Unreleased section, archived only after tagging).
+- Screen-reader labels (close buttons, menu toggle, language and theme pickers, sky widget, photo slideshow arrows,
+  location order buttons) are now translated instead of always English.
+- SkyTonight deep-sky and comet lists load in well under a second again instead of timing out with "Failed to
+  load SkyTonight results" on slow disks (Docker Desktop on Windows).
+- SkyTonight sky map: opens about three times faster, and its filters respond at once, with a thousand or more
+  targets plotted.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.7.3>
+
 ## 1.7.2
 
 ### Features
