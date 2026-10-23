@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.7.4
+
+### Fixes
+
+- Security: Pillow updated to 13.0.0, which fixes several image-decoding vulnerabilities (JPEG, TIFF, PDF, GIF, BMP);
+  astropy, pandas, SQLAlchemy and alembic also updated to their latest releases.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.7.4>
+
 ## 1.7.3
 
 ### Features
