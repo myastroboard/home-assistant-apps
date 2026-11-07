@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.6.2
+
+### Features
+
+- Editor rail follows the astrophotography workflow: new Noise and Separate stars steps before
+  the sky work, Stars (shrink, put back) after it; the pipeline runs in that exact order. See
+  [ALGORITHMS.md "Editing workflow"](https://github.com/myastroboard/myastroshine/blob/v0.6.2/docs/ALGORITHMS.md#editing-workflow).
+- While the stars are set aside, the preview of the Enhance steps shows the sky alone, with a
+  switch back to the result (`GET /api/preview/{id}?starless=true`).
+- Deconvolution in the Stack step: Richardson-Lucy against the stars' own PSF, run first on the
+  linear data (`stack.deconvolution`, off by default). See docs/ALGORITHMS.md "Post-stack".
+
+Release notes: <https://github.com/myastroboard/myastroshine/releases/tag/v0.6.2>
+
 ## 0.6.1
 
 ### Fixes
