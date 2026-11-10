@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.8.0
+
+### Features
+
+- Framing simulator: see what your sensor frames on a deep-sky target, over a real image of the sky, with rotation,
+  comparison of up to three equipment combinations and PNG export - from SkyTonight, the Wishlist, Plan My Night and
+  Astrodex. See [docs/SKYTONIGHT.md](https://github.com/myastroboard/myastroboard/blob/v1.8.0/docs/SKYTONIGHT.md#framing-simulator).
+- Share cards: turn an Astrodex picture (with its acquisition details), a logged session, tonight's sky or an upcoming
+  event into a ready-to-post image in the social-network formats (4:5, 1:1, 16:9, 9:16), made in the browser and
+  never showing your location. See [docs/SHARE_CARDS.md](https://github.com/myastroboard/myastroboard/blob/v1.8.0/docs/SHARE_CARDS.md).
+
+### Fixes
+
+- Map tiles: a failure while reading a tile from OpenStreetMap no longer returns a server error; the
+  cached tile is served instead, as for any other upstream failure.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.8.0>
+
 ## 1.7.4
 
 ### Fixes
