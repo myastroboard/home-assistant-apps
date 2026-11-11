@@ -1,5 +1,40 @@
 # Changelog
 
+## 1.8.2
+
+### Features
+
+- Demo mode (`DEMO_MODE=true`): a public, read-only instance that fills itself with demo data and plans
+  every night from SkyTonight. Installation guide in [docs/DEMO_MODE.md](https://github.com/myastroboard/myastroboard/blob/v1.8.2/docs/DEMO_MODE.md).
+- Docker image now runs Python 3.15 (up from 3.14).
+
+### Fixes
+
+- Maps no longer fail with HTTP 502 on every tile not already cached: the map tile proxy could not read
+  OpenStreetMap's responses since niquests replaced urllib3.
+- A browser still signed in to a deleted (or restored-over) account is signed out at its next request instead
+  of reading install data. See [docs/AUTHENTICATION.md](https://github.com/myastroboard/myastroboard/blob/v1.8.2/docs/AUTHENTICATION.md#sessions).
+- Only admins can clear the Celestrak block of the ISS / CSS trackers, as documented; the button is hidden
+  from other accounts.
+- The setup wizard closes as soon as Skip, Skip all, Finish or "Go to SkyTonight" is clicked, instead of
+  staying on screen until its choice was saved (a second click then skipped a step or saved twice).
+- The HTTPS-only session cookie can no longer be turned on from a plain-HTTP page, where the browser would
+  drop it and lock the admin out. Recovery steps in [docs/6.REVERSE_PROXY.md](https://github.com/myastroboard/myastroboard/blob/v1.8.2/docs/6.REVERSE_PROXY.md).
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.8.2>
+
+## 1.8.1
+
+### Fixes
+
+- DSS2 sky images (object thumbnails, framing backgrounds) fall back to mirrors of the survey (ESA, MAST, CSIRO,
+  China-VO) when CDS hips2fits is down; cards show a placeholder when no server answers. See
+  [docs/SKYTONIGHT.md](https://github.com/myastroboard/myastroboard/blob/v1.8.1/docs/SKYTONIGHT.md#sky-image).
+- Object information falls back to the SIMBAD mirrors (CfA Harvard, IDIA) when CDS SIMBAD is down, and its sources
+  line now says when the data comes from the local catalogue instead of SIMBAD.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.8.1>
+
 ## 1.8.0
 
 ### Features
