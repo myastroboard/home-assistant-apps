@@ -8,7 +8,7 @@ image: myastroboard/myastroboard
 arch:
   - amd64
   - aarch64
-stage: experimental
+stage: stable
 # Sidebar panel. Needs a MyAstroBoard image with sub-path support (MYASTROBOARD_HA_INGRESS below).
 ingress: true
 ingress_port: 5000
