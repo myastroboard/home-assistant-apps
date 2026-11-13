@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.8.3
+
+### Features
+
+- Share card: a short note under the MyAstroBoard signature option explains that keeping it helps others discover the project.
+
+### Fixes
+
+- Object images: the cache of DSS2 thumbnails (Astrodex Collection, object details) is now capped at 200 MiB, oldest first ([docs/ASTRODEX.md](https://github.com/myastroboard/myastroboard/blob/v1.8.3/docs/ASTRODEX.md)).
+- Demo mode: logged nights older than 60 days are removed with the Astrodex items they added, so the demo no longer grows on disk ([docs/DEMO_MODE.md](https://github.com/myastroboard/myastroboard/blob/v1.8.3/docs/DEMO_MODE.md)).
+- Sky images: the fallback used when CDS hips2fits is down now renders in bands, using about 110 MB instead of 1.3 GB for a large picture, so small servers no longer kill the worker mid-download.
+- Observation Log: an entry's object type and constellation are now translated.
+- Parameters -> Logs: the Delete logs button now asks for confirmation, and its messages are translated.
+- Demo mode: Astrodex pictures that could not be downloaded are retried on later checks, and constellations are stored as full names so they are translated (Astrodex, Plan My Night, Observation Log).
+- Parameters -> Users: creating an account on a slow server no longer reports a failure when the account was in fact created, and the password is hashed before the database write lock is taken.
+- Low memory: the startup log records the host's CPUs, memory and container limits, and Parameters -> Metrics warns below 1 GB (and says so when the metrics cannot be collected, instead of freezing); minimum requirements are documented ([docs/1.INSTALLATION.md](https://github.com/myastroboard/myastroboard/blob/v1.8.3/docs/1.INSTALLATION.md#system-requirements)).
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.8.3>
+
 ## 1.8.2
 
 ### Features
