@@ -29,8 +29,12 @@ Each app only wraps its image already published on Docker Hub
 The [update workflow](.github/workflows/update-apps.yml) checks the upstream
 GitHub releases every hour. When a newer release exists and its multi-arch image
 is on Docker Hub, it bumps `version:` in the app's `config.yaml` and prepends the
-release's changelog to the app's `CHANGELOG.md`. Home Assistant then offers the
-update to users. It can also be run by hand from the Actions tab.
+release's changelog to the app's `CHANGELOG.md`, in a pull request. Once every
+check on that pull request is green, the
+[auto-merge workflow](.github/workflows/auto-merge-updates.yml) squash-merges it,
+and Home Assistant then offers the update to users. A failing check leaves the
+pull request open for the maintainer. The update workflow can also be run by hand
+from the Actions tab.
 
 To add an app: create a folder with `config.yaml`, `README.md`, `DOCS.md`,
 `CHANGELOG.md`, `icon.png` and `logo.png`, with `url:` pointing at the upstream

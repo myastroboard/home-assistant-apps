@@ -1,0 +1,53 @@
+name: Auto-merge app updates
+
+# Squash-merges the version bump pull request opened by the Update apps
+# workflow once every check on it is green, so a new upstream release reaches
+# Home Assistant users without waiting for a manual merge. Any other pull
+# request is left alone.
+#
+# The main ruleset requires a code owner review, which a bot PR cannot get, so
+# the merge uses the maintainer's PAT (GH_PAT, an organization admin and thus a
+# ruleset bypass actor) with --admin. The guards below are what keep that safe:
+# same repository, the bot branch only, and the exact commit that was checked.
+
+on:
+  workflow_run:
+    workflows: [Lint]
+    types: [completed]
+
+concurrency:
+  group: auto-merge-updates
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  merge:
+    # Only a green Lint run on a pull request from the bot branch of this very
+    # repository: a fork can name its branch bot/update-apps too.
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.head_branch == 'bot/update-apps' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Merge the update pull request
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          pr=$(gh api "repos/${GH_REPO}/pulls?state=open&head=${GITHUB_REPOSITORY_OWNER}:bot/update-apps&base=main&per_page=1" \
+            --jq '.[0] | select(.head.sha == env.HEAD_SHA) | .number // empty')
+          if [ -z "$pr" ]; then
+            echo "No open update pull request at ${HEAD_SHA}: closed, or superseded by a newer push."
+            exit 0
+          fi
+          # Wait for every other check on the PR too (any added later), and stop
+          # on the first failure: a red check leaves the PR for the maintainer.
+          gh pr checks "$pr" --watch --fail-fast --interval 30
+          # --match-head-commit refuses the merge if the branch moved meanwhile.
+          gh pr merge "$pr" --squash --admin --match-head-commit "$HEAD_SHA"

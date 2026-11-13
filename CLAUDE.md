@@ -41,7 +41,9 @@ apps. Do not edit the synced copy: change it in
   [update workflow](.github/workflows/update-apps.yml) bumps `version:` only once the release's
   multi-arch image is on Docker Hub for every declared `arch`, and prepends that release's notes,
   read from the upstream `CHANGELOG.md` at the tag. A hand-set version can point users at an image
-  they cannot pull.
+  they cannot pull. Its pull request (branch `bot/update-apps`) is squash-merged by the
+  [auto-merge workflow](.github/workflows/auto-merge-updates.yml) once every check is green, so
+  the Lint checks are the only gate before users get the update.
 - **The upstream images and changelogs are a cross-repository contract.** The script accepts both
   upstream heading styles (`## 1.6.3 (date)` and `## [0.4.2] - date`); an upstream change to its
   changelog layout, image name, or a new required environment variable must be checked here.
