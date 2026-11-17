@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.9.0
+
+### Features
+
+- My Progress: a "My astro year" review of any year, screen by screen and each one shareable, highlighted
+  from 1 December to 15 January; badges earned from your log, seasonal challenges and a Messier marathon
+  planner for your latitude in Astrodex -> Progress ([docs/MY_PROGRESS.md](https://github.com/myastroboard/myastroboard/blob/v1.9.0/docs/MY_PROGRESS.md)).
+- Phones: each row of sub-tabs becomes one menu button showing the current sub-tab, instead of pills that
+  wrapped over half the screen ([docs/MOBILE.md](https://github.com/myastroboard/myastroboard/blob/v1.9.0/docs/MOBILE.md)).
+- Profiles and Community: a display name and picture shown wherever others see you, and a Community tab
+  (opt-in) with a member directory, profiles, an activity feed and shared "together" totals, never a
+  ranking; also a step of the first-run wizard ([docs/COMMUNITY.md](https://github.com/myastroboard/myastroboard/blob/v1.9.0/docs/COMMUNITY.md)).
+- Privacy: optionally publish your own privacy notice (an address, or a text served at `/privacy`), linked from
+  the login page, the footer and My settings -> Security; and clean the location data still in pictures uploaded
+  before 1.6.4, in App settings -> Configuration ([docs/PRIVACY.md](https://github.com/myastroboard/myastroboard/blob/v1.9.0/docs/PRIVACY.md#publishing-your-privacy-notice)).
+- A cleaner footer (logo, version, links, compact language and theme pickers, readable in every theme),
+  and a language picker on the login page ([docs/USER_SETTINGS.md](https://github.com/myastroboard/myastroboard/blob/v1.9.0/docs/USER_SETTINGS.md)).
+- Documentation: the guides are now a searchable website, [docs.myastroboard.org](https://docs.myastroboard.org/),
+  starting with a visual tour of the application.
+
+### Fixes
+
+- Interface texts that still sent you to "Parameters -> Advanced" now name the current screens (App settings ->
+  Configuration or Connectors), and the My settings -> Notifications messages, the meteor shower / comet lead time
+  ("2 days") and the footer theme picker are translated in every language.
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.9.0>
+
 ## 1.8.3
 
 ### Features
