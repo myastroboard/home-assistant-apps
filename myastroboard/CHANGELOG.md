@@ -1,5 +1,44 @@
 # Changelog
 
+## 1.9.1
+
+### Features
+
+- Lighter and faster server: one process with request threads on small hosts (about 200 MB less memory),
+  two from 2 CPUs and 4 GB, and pages stay quick during SkyTonight calculations
+  ([docs/1.INSTALLATION.md](https://github.com/myastroboard/myastroboard/blob/v1.9.1/docs/1.INSTALLATION.md#workers-and-threads)).
+- New smart telescope presets: Seestar S50 Pro and S30 Plus, Vaonis Vespera 3, Vespera Pro 2 and Atlas
+  ([docs/EQUIPMENT.md](https://github.com/myastroboard/myastroboard/blob/v1.9.1/docs/EQUIPMENT.md#bundles-smart-telescopes)).
+- Framing simulator: galaxies are outlined by their catalogue ellipse and orientation, and zoom buttons
+  sharpen the sky image around small fields ([docs/SKYTONIGHT.md](https://github.com/myastroboard/myastroboard/blob/v1.9.1/docs/SKYTONIGHT.md#framing-simulator)).
+
+### Fixes
+
+- Smart telescopes added from the Equipment tab now get their built-in camera and a combination, so the
+  framing simulator can show their field; Seestar frames are drawn in portrait, as the device records
+  ([docs/EQUIPMENT.md](https://github.com/myastroboard/myastroboard/blob/v1.9.1/docs/EQUIPMENT.md#bundles-smart-telescopes)).
+- The framing simulator lists the combinations it cannot show with what each one lacks, and a link to
+  edit them ([docs/SKYTONIGHT.md](https://github.com/myastroboard/myastroboard/blob/v1.9.1/docs/SKYTONIGHT.md#framing-simulator)).
+- Aurora forecast on phones: each time slot's header wraps instead of overflowing, and the Kp value fits
+  in narrow columns.
+- Astro weather no longer falls back to its reduced forecast for some locations: it stopped requesting
+  unused upper-air variables, one of which made Open-Meteo answer with an error.
+- The weather forecast decodes again on humid nights: a fractional fog percentage made the fast decoder
+  fail and fall back to the slower JSON request, which drops several variables.
+- SkyTonight no longer stops calculating until the next restart after a worker was killed for lack of
+  memory (every run then failed with "Working outside of application context").
+- Signing in at a local `http://` address works again with the HTTPS-only session cookie on: the page
+  no longer reloads forever ([docs/6.REVERSE_PROXY.md](https://github.com/myastroboard/myastroboard/blob/v1.9.1/docs/6.REVERSE_PROXY.md)).
+- Demo mode: `/login?signin` shows the sign-in form again in a browser already browsing the demo
+  ([docs/DEMO_MODE.md](https://github.com/myastroboard/myastroboard/blob/v1.9.1/docs/DEMO_MODE.md)).
+- My astro year: format, theme and signature are chosen once for the whole slideshow and apply to the
+  preview, "This screen" and "All screens" alike ([docs/MY_PROGRESS.md](https://github.com/myastroboard/myastroboard/blob/v1.9.1/docs/MY_PROGRESS.md)).
+- Community, Astrodex, Catalogue Collection, Observation Log and montages: pictures load as small
+  previews instead of full-size astrophotos, so these pages open quickly and scroll smoothly
+  ([docs/COMMUNITY.md](https://github.com/myastroboard/myastroboard/blob/v1.9.1/docs/COMMUNITY.md)).
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.9.1>
+
 ## 1.9.0
 
 ### Features
