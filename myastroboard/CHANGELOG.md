@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.9.2
+
+### Features
+
+- Moon: supermoons, micromoons, Blue Moons and the traditional Full Moon names ("Beaver Supermoon") are
+  computed and shown in the Moon report, the phase calendar and the upcoming events
+  ([ASTROPHOTOGRAPHY.md](https://github.com/myastroboard/myastroboard/blob/v1.9.2/docs/ASTROPHOTOGRAPHY.md#full-moons-astroweatherfull_moonspy)).
+- Equipment presets: Vaonis Atlas Twin, Unistellar Odyssey, Odyssey Pro, eVscope 2 and eQuinox 2, DWARFLAB Draco
+  and Celestron Origin Mark II smart telescopes, each with its built-in camera and mount ([EQUIPMENT.md](https://github.com/myastroboard/myastroboard/blob/v1.9.2/docs/EQUIPMENT.md#bundles-smart-telescopes)).
+- Equipment presets: ZWO Seestar TC20 tripod and TH10 tripod head accessories.
+- Equipment presets: 43 more common items - Celestron C6 / C9.25 / C11 and EdgeHD 9.25 / 11, William Optics
+  and Sky-Watcher refractors and Newtonians, ZWO and Player One cameras, Canon, Nikon and Sony camera bodies,
+  ZWO, Sky-Watcher and Celestron mounts.
+- Equipment presets are now edited as one small file per gear type and manufacturer under
+  `presets/equipment/`, with JSON Schemas and a checking script run in CI
+  ([EQUIPMENT.md](https://github.com/myastroboard/myastroboard/blob/v1.9.2/docs/EQUIPMENT.md#adding-or-editing-a-preset)).
+
+### Fixes
+
+- ISS / CSS trackers: a Celestrak overload (HTTP 5xx) no longer needs an admin to clear it; Celestrak is
+  asked again on its own after 6 h, 12 h, then 24 h ([SPACEFLIGHT.md](https://github.com/myastroboard/myastroboard/blob/v1.9.2/docs/SPACEFLIGHT.md#tle-data)).
+- Equipment presets: a Vespera II created from its preset no longer shows a payload warning for its own
+  built-in mount ([EQUIPMENT.md](https://github.com/myastroboard/myastroboard/blob/v1.9.2/docs/EQUIPMENT.md#preset-field-reference)).
+
+Release notes: <https://github.com/myastroboard/myastroboard/releases/tag/v1.9.2>
+
 ## 1.9.1
 
 ### Features
